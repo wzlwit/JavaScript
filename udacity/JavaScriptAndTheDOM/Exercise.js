@@ -7,4 +7,6 @@ document.addEventListener('click', function () {
  document.body.addEventListener('click', function () {
      console.log('The document body was clicked');
  });
-// document.body will fire first, it is more specific. Capturing is from top to down. then bubble up.
+// document.body will fire first. 
+//default is false for the 3rd parameter (useCaputure). so listener will execute during bubble phase
+//Capturing is from top to down. then bubble up. 

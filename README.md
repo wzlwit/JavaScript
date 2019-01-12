@@ -1,2 +1,6 @@
 # JavaScript
-for exercise sources
+the contents are:
+    projects
+    algorithm
+    exercise
+    courses and answers

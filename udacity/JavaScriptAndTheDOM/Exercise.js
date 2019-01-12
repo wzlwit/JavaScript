@@ -45,7 +45,7 @@ for (let i = 1; i <= 200; i++) {
 document.body.appendChild(myCustomDiv);
 end = performance.now();
 console.log(`time used is ${end - start} milliseconds!`)
-//1.1ms
+//1.3ms
 
 
 //here is the second version
@@ -58,5 +58,21 @@ for (let i = 1; i <= 200; i++) {
 }
 end = performance.now();
 console.log(`time used is ${end - start} milliseconds!`)
-//0.7ms
+//1.1ms
 
+
+// document.createDocumentFragment();
+start = performance.now();
+const fragment = document.createDocumentFragment();  // ← uses a DocumentFragment instead of a <div>
+
+for (let i = 0; i < 200; i++) {
+    const newElement = document.createElement('p');
+    newElement.innerText = 'This is paragraph number ' + i;
+
+    fragment.appendChild(newElement);
+}
+
+document.body.appendChild(fragment)
+end = performance.now();
+console.log(`time used is ${end - start} milliseconds!`)
+//1.0ms

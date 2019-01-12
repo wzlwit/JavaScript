@@ -6,6 +6,7 @@
 5.    sort: display all students sorted by a key (default is name);
 6.    random: display a random student's information
 7.    take the third letter of every student's name, append it to the beginning of their name and display the sorted list of students 
+8.    reverse the array in place
 */
 
 //here to create a new object of student, to test add() function
@@ -16,7 +17,10 @@ var functionToOperater = 1;
 
 // pass in arguments for specific functions through an array of args[];
 var args = [
-"Jack","harry", 33
+    "Oliver",
+    "Jack",
+    22,
+    23
 ]
 
 //create an array with 20 objects with name
@@ -44,9 +48,15 @@ var students = [
 ];
 
 //add ages to the object
+var msg = "I do not know any message so just give a string to popualte the message property of the object array students"
+var token = msg.split(" ");
 for (let i = 20; i < 40; i++) {
     students[i - 20].age = i;
 }
+for (let i = 20; i < 30; i++) {
+    students[i - 20].message = token[i - 20];
+}
+
 //extra property can be added to the each object in the array of students
 
 
@@ -97,6 +107,11 @@ function operate(functionNum, rest) {
             display();
             break;
         }
+        case 8:{
+            students.reverse();
+            display();
+            break;
+        }
     }
 }
 
@@ -108,9 +123,9 @@ return          undefined;
  */
 function printOut(index) {
     var object = students[index];
-    var myString = `index: ${index}\t`;
+    var myString = `index: ${index}\t\t`;
     for (var key in object) {
-        myString += `${key}: ${object[key]}\t`;
+        myString += `${key}: ${object[key]}\t\t`;
     }
     console.log(myString);
 }
@@ -118,15 +133,16 @@ function printOut(index) {
 
 /* 1
 this function can search any value of the objects, ignoring case;
-multiple names (or values) can be searched at once;
-paramters:      rest: a list of string or number;
-return:         an array of objects which mathe any 1 of the arguments (OR logic);
+multiple names (or mixed values) can be searched once;
+paramters:      rest: a list of value;
+return:         an array of objects which match any one of the arguments (OR logic);
 
-later version would be possible get the object that fullfill all the conditions. (using AND logic)
+later version would be possible to get the object that fullfill all the conditions (using AND logic);
 */
 function search(rest) {
     if (rest.length === 0) {
-        console.log("please enter a value or values to search"); return;
+        console.log("please enter a value or values to search");
+        return;
     } else console.log(`search by ${rest}\n`); //to show the search conditions for testing
 
     var studentsFound = [];
@@ -236,12 +252,17 @@ function sort(pattern) {
     let key;
 
     console.log(`sort by "${pattern[0]}" `);
+    loop1:
     for (let i = 0; i < students.length; i++) {
         let object = students[i];
+        if (key) {//if key is found, will break the loop to stop find key in the next student object
+            break loop1;
+        }
         key = Object.keys(object).find(k => {
             if (k === pattern[0]) return k;
         });
     }
+
     if (!key) {
         console.log("no key matches, will be sorted by name");
         key = "name";
@@ -251,15 +272,21 @@ function sort(pattern) {
     students.sort((obj1, obj2) => {
         let value1 = obj1[key];
         let value2 = obj2[key];
-        //console.log(obj1[key]);
+
         if (typeof value1 === "string") {
             value1 = value1.toLowerCase();
+        }
+        if (typeof value2 === "string") {
             value2 = value2.toLowerCase();
         }
-        if (value1 < value2) {
+
+        //put "undefined" values at the end checking if value exists
+        if (value1 < value2 || (value1 && !value2)) {
             return -1;
-        } else if (value1 > value2) {
+        } else if (value1 > value2 || (value1 && !value2)) {
             return 1;
+        } else if (value1 === value2) {
+            return 0;
         }
     });
 
@@ -267,12 +294,12 @@ function sort(pattern) {
 
 
 /* 6
-this function print out a student information
+this function print out a random student's information;
 no parameter;
 return      undefined;
 */
 function random() {
-    let index = Math.floor(Math.random() * students.length);
+    let index = Math.floor(Math.random() * students.length); //to make sure all index can be accessed
     printOut(index);
 }
 
@@ -288,7 +315,3 @@ function nameChange() {
         students[i].name = students[i].name[2] + students[i].name;
     }
 }
-
-//diplay the final results for testing;
-
-

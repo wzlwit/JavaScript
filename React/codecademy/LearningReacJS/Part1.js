@@ -241,7 +241,7 @@ class Contact extends React.Component {
         );
         return (
             <div id="authorization">
-                {this.state.authorized?<h1>Contact</h1>:<h1>Enter the Password</h1>}
+                {this.state.authorized ? <h1>Contact</h1> : <h1>Enter the Password</h1>}
                 {this.state.authorized ? contactInfo : login};
             </div>
         );
@@ -254,4 +254,53 @@ ReactDOM.render(
 );
 
 
-//Components Interaction
+/* Components Interaction import/export */
+export class NavBar extends React.Component { };
+import { NavBar } from './NavBar';
+
+
+//this.props
+class PropsDisplayer extends React.Component {
+    render() {
+        const stringProps = JSON.stringify(this.props);
+        return (
+            <div>
+                <h1>CHECK OUT MY PROPS OBJECT</h1>
+                <h2>{this.stringProps}</h2>
+            </div>
+        );
+    }
+}
+ReactDOM.render(<PropsDisplayer />, document.getElementById('app'));
+/* output:
+CHECK OUT MY PROPS OBJECT
+*/
+//It has some properties that JSON.stringify doesn't detect
+
+
+//pass informations to element
+<Greeting name="Frarthur" town="Flundon" age={2} haunted={false} />
+
+
+//show this.props on added information
+
+class PropsDisplayer extends React.Component {
+    render() {
+        const stringProps = JSON.stringify(this.props);
+        return (
+            <div>
+                <h1>CHECK OUT MY PROPS OBJECT</h1>
+                <h2>{stringProps}</h2>
+            </div>
+        );
+    }
+}
+ReactDOM.render(<PropsDisplayer myProp="Hello" />, document.getElementById('app'))
+/* output:
+CHECK OUT MY PROPS OBJECT
+{"myProp":"Hello"}
+//this.pros is shown as an objct
+*/
+
+// Render a Component's props
+return <h1>Hi there, {this.props.myProp}</h1>

@@ -1,3 +1,4 @@
+/*1. JSX */
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -114,3 +115,143 @@ const peopleLis = people.map((person, i) => <li key={"person_" + i}>{person}</li
 const h1 = <h1>Hello World</h1>;
 //==
 const h1 = React.createElement("hi", null, "Hello, world");
+
+
+/* 2. React Components */
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+
+//create a Component Class. (override) only one method render(), telling how to build components
+class MyComponentClass extends React.Component {
+    render() {
+        return <h1>Hello world</h1>;
+    }
+}
+
+
+//create a Component Instace
+<MyComponentClass />;
+
+
+//render component;
+ReactDOM.render(<MyComponentClass />, document.getElementById('app'));
+
+
+//example
+class QuoteMaker extends React.Component {
+    render() {
+        return (
+            <blockquote>
+                <p>What is important now is to recover our senses.</p>
+                <cite>
+                    <a target="_blank" href="https://en.wikipedia.org/wiki/Susan_Sontag">Susan Sontag</a>
+                </cite>
+            </blockquote>
+        );
+    }
+};
+
+ReactDOM.render(<QuoteMaker />, document.getElementById('app')
+);
+
+
+
+// Conditional in a Render Function
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+const fiftyFifty = Math.random() < 0.5;
+
+class TonightsPlan extends React.Component {
+    render() {
+        if (fiftyFifty) {
+            return (
+                <h1>Tonight I'm going out WOOO</h1>
+            );
+        } else {
+            return <h1>Tonight I'm going to bed WOOO</h1>;
+        }
+    }
+};
+ReactDOM.render(<TonightsPlan />, document.getElementById('app'));
+
+
+// this. in a Component and 'get' method
+import React from 'react';
+import ReactDOM from 'react-dom';
+class MyName extends React.Component {
+    // name property goes here:
+    get name() {
+        return 'whatever-your-name-is-goes-here';
+    }
+    render() {
+        return <h1>My name is {this.name}.</h1>;
+    }
+}
+ReactDOM.render(<MyName />, document.getElementById('app'));
+
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+class Button extends React.Component {
+    scream() {
+        alert('AAAAAAAAHHH!!!!!');
+    }
+    render() {
+        return <button onClick={this.scream}>AAAAAH!</button>;
+    }
+}
+ReactDOM.render(<Button />, document.getElementById('app'))
+
+
+// Authorization Form
+class Contact extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            password: 'swordfish',
+            authorized: false
+        };
+        this.authorize = this.authorize.bind(this);
+    }
+
+    authorize(e) {
+        const password = e.target.querySelector(
+            'input[type="password"]').value;
+        const auth = password == this.state.password;
+        this.setState({
+            authorized: auth
+        });
+    }
+
+    render() {
+        var login = (
+            <form action="#" onSubmit={this.authorize}>
+                <input type="password" placeholder="Passwrod" />
+                <input type="submit" />
+            </form>
+        );
+        const contactInfo = (
+            <ul>
+                <li>client@example.com</li>
+                <li>555.555.5555</li>
+            </ul>
+        );
+        return (
+            <div id="authorization">
+                {this.state.authorized?<h1>Contact</h1>:<h1>Enter the Password</h1>}
+                {this.state.authorized ? contactInfo : login};
+            </div>
+        );
+    }
+}
+
+ReactDOM.render(
+    <Contact />,
+    document.getElementById('app')
+);
+
+
+//Components Interaction

@@ -304,3 +304,109 @@ CHECK OUT MY PROPS OBJECT
 
 // Render a Component's props
 return <h1>Hi there, {this.props.myProp}</h1>
+
+
+//when istanciate an class, it automatically invoke its render()method
+export class Greeting extends React.Component {
+    render() {
+        if (this.props.signedIn == false) {
+            return <h1>GO AWAY</h1>;
+        } else {
+            return <h1>Hi there, {this.props.name}!</h1>;
+        }
+    }
+}
+<Greeting name="Alison" signedIn={false} />
+//{false} used, not string"false" to pass in an boolean
+
+
+
+//pass ane event handler
+export class Button extends React.Component {
+    render() {
+        return (
+            <button onClick={this.props.talk}>
+                Click me!
+        </button>
+        );
+    }
+}
+//Talker.js
+import { Button } from './Button';
+
+class Talker extends React.Component {
+    talk() {
+        let speech = '';
+        for (let i = 0; i < 10000; i++) {
+            speech += 'blah ';
+        }
+        alert(speech);
+    }
+    render() {
+        return <Button talk={this.talk} />;
+    }
+}
+
+ReactDOM.render(
+    <Talker />,
+    document.getElementById('app')
+);
+
+
+
+//name convention
+class MyClass extends React.Component {
+    handleHover() {
+        alert('I am an event handler.');
+        alert('I will listen for a "hover" event.');
+    }
+
+    render() {
+        return <Child onHover={this.handleHover} />;
+    }
+}
+
+
+
+//this.props.children
+export class List extends React.Component {
+    render() {
+        let titleText = `Favorite ${this.props.type}`;
+        if (this.props.children instanceof Array) {
+            titleText += 's';
+            //pluralize title
+        }
+        return (
+            <div>
+                <h1>{titleText}</h1>
+                <ul>{this.props.children}</ul>
+            </div>
+        );
+    }
+}
+
+class App extends React.Component {
+    render() {
+        return (
+            <div>
+                <List type='Living Musician'>
+                    <li>Sachiko M</li>
+                    <li>Harvey Sid Fisher</li>
+                </List>
+                <List type='Living Cat Musician'>
+                    <li>Nora the Piano Cat</li>
+                </List>
+            </div>
+        );
+    }
+}
+
+ReactDOM.render(
+    <App />,
+    document.getElementById('app')
+);
+
+
+
+//give a Class  default props (object)
+Button.defaultProps={text:"I am a button"};

@@ -415,15 +415,17 @@ Button.defaultProps = { text: "I am a button" };
 
 
 //state
-{ mood: 'great', hungry: false };
+var obj = { mood: 'great', hungry: false };
 this.setState({ hungry: true });
-{ mood: 'great', hungry: true };
+obj = { mood: 'great', hungry: true };
 
 
 
 //this.mehtodName.bind. 
 /* Due to the way that event handlers are bound in JavaScript */
-constructor(props) { this.toggleMood = this.toggleMood.bind(this); }
+class My extends React.Component {
+    constructor(props) { this.toggleMood = this.toggleMood.bind(this); }
+}
 
 
 

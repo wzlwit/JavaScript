@@ -409,4 +409,96 @@ ReactDOM.render(
 
 
 //give a Class  default props (object)
-Button.defaultProps={text:"I am a button"};
+Button.defaultProps = { text: "I am a button" };
+
+
+
+
+//state
+{ mood: 'great', hungry: false };
+this.setState({ hungry: true });
+{ mood: 'great', hungry: true };
+
+
+
+//this.mehtodName.bind. 
+/* Due to the way that event handlers are bound in JavaScript */
+constructor(props) { this.toggleMood = this.toggleMood.bind(this); }
+
+
+
+//color picker
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Button } from './Button';
+
+class Random extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { color: [23, 111, 222] };
+        this.handleClick = this.handleClick.bind(this);
+    }
+    componentDidMount() {
+        this.applyColor();
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        this.applyColor();
+    }
+
+    formatColor(ary) {
+        return 'rgb(' + ary.join(', ') + ')';
+    }
+
+    isLight() {
+        const rgb = this.state.color;
+        return rgb.reduce((a, b) => a + b) < 127 * 3;
+    }
+
+    applyColor() {
+        const color = this.formatColor(this.state.color);
+        document.body.style.background = color;
+    }
+
+    chooseColor() {
+        const random = [];
+        for (let i = 0; i < 3; i++) {
+            random.push(Math.floor(Math.random() * 256));
+        }
+        return random;
+    }
+    handleClick() {
+        this.setState({ color: this.chooseColor() });
+    }
+    render() {
+        return (
+            <div>
+                <h1 className={this.isLight() ? 'white' : 'black'}>
+                    Your color is {this.formatColor(this.state.color)}
+                </h1>
+                <Button light={this.isLight()} onClick={this.handleClick} />
+            </div>
+        );
+    }
+}
+
+ReactDOM.render(
+    <Random />,
+    document.getElementById('app')
+);
+
+
+import React from 'react';
+
+export class Button extends React.Component {
+    render() {
+        return (
+            <button
+                className={this.props.light ? 'light-button' : 'dark-button'}
+                onClick={this.props.onClick}
+            >
+                Refresh
+			</button>
+        );
+    }
+}

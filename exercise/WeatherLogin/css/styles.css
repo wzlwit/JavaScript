@@ -1,0 +1,30 @@
+form {
+    margin-left: 10px;
+}
+
+fieldset, input {
+    width: 250px;
+}
+
+legend {
+    color: blue;
+    font-size: 30px;
+}
+
+div span {
+    color: green;
+}
+
+p {
+    margin: 0 0;
+}
+
+ul {
+    list-style-position: outside;
+    position: relative;
+    left: -4ch;
+}
+
+#error {
+    color: red;
+}

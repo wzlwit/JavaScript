@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Loing Validation and Weather Forecast</title>
+    <link rel="stylesheet" href="./css/styles.css">
+
+</head>
+
+<body>
+    <form name="loginFM" method="POST" onsubmit="return validate()">
+        <fieldset>
+            <legend>Login</legend>
+            <label for="email">Email Adress</label><br>
+            <input type="text" name="emailInput" id="email"><br> <!-- type="email" would be better for validation -->
+            <br>
+            <label for="pwd">Password</label><br>
+            <input type="password" name="pwdInput" id="pwd"><br>
+            <br>
+            <button>Login &rarr;</button>
+
+            <div class="weather-container">
+                <ul id="weather-list"></ul>
+            </div>
+            <div id="message"></div>
+            <div id="error"></div>
+        </fieldset>
+    </form>
+
+
+    <script src="./js/login.js"></script>
+</body>
+
+</html>

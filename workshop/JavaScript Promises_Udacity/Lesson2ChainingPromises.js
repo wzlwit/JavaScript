@@ -76,8 +76,8 @@ Promise.all(arrayOfPromises).then(arrayOfVales => { })//values are in the same o
 //use Promises.All() to map the array to keep order
 getJSON(url)
     .then(resp => {
-        var aryOfProm = resp.results.map(getJSON);
-        return Promise.all(aryOfProm);
+        var aryOfProm = resp.results.map(getJSON); //wrap the url in promises, map actually return undefined, so not waiting the asynchronous response, so the promises are still in correct order 
+        return Promise.all(aryOfProm); //this function will make sure: all promises are settled in correct order 
     })
     .then(aryOfData => {
         aryOfData.forEach(planet => {

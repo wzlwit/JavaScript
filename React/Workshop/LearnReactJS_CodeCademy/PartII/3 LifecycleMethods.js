@@ -53,7 +53,6 @@ const yellow = 'rgb(255, 215, 18)';
 export class TopNumber extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = { 'highest': 0 };
     }
 
@@ -134,15 +133,12 @@ const fieldStyle = {
 class App extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {
             game: false,
             targets: {},
             latestClick: 0
         };
-
         this.intervals = null;
-
         this.hitTarget = this.hitTarget.bind(this);
         this.startGame = this.startGame.bind(this);
         this.endGame = this.endGame.bind(this);
@@ -179,6 +175,7 @@ class App extends React.Component {
         this.intervals.forEach((int) => {
             clearInterval(int);
         });
+        //reset
         this.intervals = [];
         this.setState({
             game: false,
@@ -227,6 +224,8 @@ ReactDOM.render(
     <App />,
     document.getElementById('app')
 );
+
+
 
 /* unmount: Adding Exclamation */
 //Enthused.js

@@ -110,6 +110,15 @@ export const GuineaPigs = (props) => {// props can be changed to any other name
 
 }
 
+//another way for statelss functional component
+function MyClass (props){
+    render(
+        <h1>hello, {props.name}</h1>
+    )
+}
+
+
+
 
 /* propTypes */
 Runner.propTypes = {
@@ -218,7 +227,7 @@ export class BookList extends React.Component {
 
 ReactDOM.render(<BookList />, document.getElementById('app'));
 
-//Stateless Functional Components
+//image show for GuineaPigs
 import React from 'react';
 
 export class GuineaPigs extends React.Component {

@@ -61,3 +61,54 @@ printer.mode;
 
 // *In JavaScript, a primitive (e.g., a string, number, boolean, etc.) is immutable. In other words, any changes made to an argument inside a function effectively creates a copy local to that function, and does not affect the primitive outside of that function.
 
+/**
+ * 3. Invoking Object Methods
+ */
+// todo: Question 2 of 6
+const myArray = [function alerter() { alert('Hello!'); }];
+
+myArray[0]();
+
+/**
+ * todo: Question 3 of 6
+Write an expression that invokes the function referenced by the bell object's ring property:
+ */
+const bell = {
+    color: 'gold',
+    ring: function () {
+        console.log('Ring ring ring!');
+    }
+};
+
+bell.ring();
+
+
+// todo: Question 5 of 6
+const tree = {
+    type: 'redwood',
+    leaves: 'green',
+    height: 80,
+    age: 15,
+    growOneFoot: function () {
+        this.height += 1;
+    }
+};
+
+tree.growOneFoot()
+
+/**
+ * odo: Question 6 of 6
+
+Create an object called `chameleon` with two properties:
+
+1. `color`, whose value is initially set to 'green' or 'pink'
+2. `changeColor`, a function which changes `chameleon`'s `color` to 'pink'
+    if it is 'green', or to 'green' if it is 'pink'
+
+*/
+const chameleon = {
+    color: 'green',
+    changeColor: function () {
+        this.color = this.color === 'green' ? 'pink' : 'green'
+    }
+}

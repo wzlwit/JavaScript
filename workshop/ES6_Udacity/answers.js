@@ -204,7 +204,7 @@ for (const member of members) {
 
  */
 
-/**
+/** Lesson 3
  * 26. Sending Data into/out of a Generator
  */
 function* getEmployee() {
@@ -245,7 +245,7 @@ const positions = generatorIterator.next(`${name} is magnificent!`).value;
 // displays each name with description on its own line
 positions.join('\n');
 
-/**
+/**Lesson 3
  * todo: 26. Quiz
  */
 function* createSundae() {
@@ -265,3 +265,15 @@ it.next('whipped cream');
 it.next();
 
 //! The toppings array will have undefined as its last item
+
+
+/** Lesson 4
+ * todo: Polyfill/Polyfiller
+ */
+
+if (!String.prototype.startsWith) {
+    String.prototype.startsWith = function (searchString, position) {
+        position = position || 0;
+        return this.substr(position, searchString.length) === searchString;
+    };
+}

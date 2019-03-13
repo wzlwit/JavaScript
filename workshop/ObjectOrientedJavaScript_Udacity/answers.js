@@ -112,3 +112,19 @@ const chameleon = {
         this.color = this.color === 'green' ? 'pink' : 'green'
     }
 }
+
+/**
+ * *5. Extracting Properties and Values
+ * todo: Question 3 of 3
+ * Write an expression using Object.keys() to extract the keys (i.e., property names) from the triangle object:
+ */
+const triangle = {
+  type: 'polygon',
+  sides: 3,
+  sumOfAngles: 180,
+  equilateral: true,
+  equiangular: true
+};
+
+Object.keys(triangle);
+
